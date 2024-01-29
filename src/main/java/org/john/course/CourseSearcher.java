@@ -24,10 +24,19 @@ public class CourseSearcher {
             return getCoursesAsString(cache.get(courseType));
         }
 
+        return getCoursesAsString(loadCourses(courseType));
+    }
+
+    public void loadAllCourses() {
+        CourseType.VALUES.values().forEach(this::loadCourses);
+    }
+
+
+    private List<Course> loadCourses(CourseType courseType) {
         Element outerTable = document.getElementById(TABLE_ROW_ID_PREFIX + courseType.getPositionKey());
 
         if(outerTable == null) {
-            return "Table does not exist";
+            return new ArrayList<>();
         }
 
         Element innerTable = outerTable.getElementsByClass(TABLE_CLASS_NAME).getFirst();
@@ -58,9 +67,9 @@ public class CourseSearcher {
 
             courseList.add(courseBuilder.build());
         }
-        cache.put(courseType, courseList);
 
-        return getCoursesAsString(courseList);
+        cache.put(courseType, courseList);
+        return courseList;
     }
 
     private static String getCoursesAsString(List<Course> courses) {
