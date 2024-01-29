@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="initial commit">
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="add: loadAllCourses method">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +118,8 @@
       <option name="presentableId" value="Default" />
       <updated>1706494074370</updated>
       <workItem from="1706494075452" duration="23061000" />
-      <workItem from="1706517244314" duration="528000" />
+      <workItem from="1706517244314" duration="1034000" />
+      <workItem from="1706563997643" duration="5593000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -124,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706517382729</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add: loadAllCourses method">
+      <option name="closed" value="true" />
+      <created>1706518179029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706518179029</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +145,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="add: loadAllCourses method" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: loadAllCourses method" />
   </component>
 </project>

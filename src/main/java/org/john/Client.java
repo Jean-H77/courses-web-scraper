@@ -19,7 +19,7 @@ public class Client {
         URL = url;
     }
 
-    public void load() throws InterruptedException {
+    private void loadData() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         System.setProperty("webdriver.gecko.driver","C:/geckodriver.exe");
         driver.get(URL);
@@ -36,8 +36,8 @@ public class Client {
         Thread.sleep(15_000); // have to find a better way to do this
     }
 
-    public String refresh() throws InterruptedException {
-        load();
+    public String getPageSource() throws InterruptedException {
+        loadData();
         return driver.getPageSource();
     }
 

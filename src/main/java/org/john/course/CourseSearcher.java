@@ -13,30 +13,13 @@ public class CourseSearcher {
 
     private Document document;
 
-    private final Map<CourseType, List<Course>> cache = new HashMap<>();
-
-    public CourseSearcher(String html) {
-        this.document = Jsoup.parse(html);
-    }
-
-    public String getCourseTable(CourseType courseType) {
-        if(cache.containsKey(courseType)) {
-            return getCoursesAsString(cache.get(courseType));
-        }
-
-        return getCoursesAsString(loadCourses(courseType));
-    }
-
-    public void loadAllCourses() {
-        CourseType.VALUES.values().forEach(this::loadCourses);
-    }
+    private final Map<String, List<Course>> courses = new HashMap<>();
 
 
-    private List<Course> loadCourses(CourseType courseType) {
-        Element outerTable = document.getElementById(TABLE_ROW_ID_PREFIX + courseType.getPositionKey());
-
+    public void loadCourse(String course, String position) {
+        Element outerTable = document.getElementById(TABLE_ROW_ID_PREFIX + position);
         if(outerTable == null) {
-            return new ArrayList<>();
+            return;
         }
 
         Element innerTable = outerTable.getElementsByClass(TABLE_CLASS_NAME).getFirst();
@@ -65,33 +48,45 @@ public class CourseSearcher {
                 }
             }
 
+            courseBuilder.index(position);
             courseList.add(courseBuilder.build());
         }
-
-        cache.put(courseType, courseList);
-        return courseList;
+        System.out.println("Adding course: " + course);
+        courses.put(course, courseList);
     }
 
-    private static String getCoursesAsString(List<Course> courses) {
+    public String generateCourseTable(String course) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(Course course : courses) {
+        List<Course> courseList = courses.get(course);
+        for(Course c : courseList) {
             stringBuilder
-                    .append(course.section()).append(" ")
-                    .append(course.classNumber()).append(" ")
-                    .append(course.availableSeats()).append(" ")
-                    .append(course.status()).append(" ")
-                    .append(course.component()).append(" ")
-                    .append(course.location()).append(" ")
-                    .append(course.days()).append(" ")
-                    .append(course.time()).append(" ")
-                    .append(course.instructor()).append(" ")
-                    .append(course.consent()).append(" ")
+                    .append(c.section()).append(" ")
+                    .append(c.classNumber()).append(" ")
+                    .append(c.availableSeats()).append(" ")
+                    .append(c.status()).append(" ")
+                    .append(c.component()).append(" ")
+                    .append(c.location()).append(" ")
+                    .append(c.days()).append(" ")
+                    .append(c.time()).append(" ")
+                    .append(c.instructor()).append(" ")
+                    .append(c.consent()).append(" ")
                     .append("\n");
         }
         return stringBuilder.toString().replaceAll("null", "");
     }
 
-    public void refreshCourses(String html) {
+    public void loadCourses(String html) {
+        courses.clear();
         document = Jsoup.parse(html);
+        Elements elements = document.select("span:contains(Units)");
+        for(Element e : elements) {
+            String position = e.id().substring(e.id().lastIndexOf("$") + 1);
+            String courseTitle = e.text().substring(0, e.text().indexOf("-"));
+            loadCourse(courseTitle, position);
+        }
+    }
+
+    public Document getDocument() {
+        return document;
     }
 }
