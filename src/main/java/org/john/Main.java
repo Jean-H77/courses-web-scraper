@@ -1,24 +1,22 @@
 package org.john;
 
-import org.john.course.CourseSearcher;
+import org.john.course.Course;
+import org.john.course.CourseLoader;
+import org.john.course.CourseRepository;
 
-import java.util.Scanner;
-
-import static org.john.course.CourseConstants.COURSE_URL;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-        Client client = new Client(COURSE_URL);
+    public static void main(String[] args) {
+        String url = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
+        String subject = "COMP";
 
-        CourseSearcher courseSearcher = new CourseSearcher();
-        courseSearcher.loadCourses(client.getPageSource());
+        CourseLoader loader = new CourseLoader(url, subject);
+        Map<String, List<Course>> courses = loader.loadAndGetCoursesMap();
 
-        while(true) {
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
-            String str = courseSearcher.generateCourseTable(input);
-            System.out.println(str);
-        }
+        CourseRepository courseRepository = new CourseRepository();
+        courseRepository.putAll(courses);
     }
 }
