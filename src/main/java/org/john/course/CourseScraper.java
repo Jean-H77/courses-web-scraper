@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CourseLoader {
+public class CourseScraper {
 
     private final WebDriver driver = new FirefoxDriver();
     private final String URL;
@@ -27,14 +27,14 @@ public class CourseLoader {
     private final CourseRepository courseRepository;
 
     @Inject
-    public CourseLoader(CourseRepository courseRepository) {
+    public CourseScraper(CourseRepository courseRepository) {
         // TODO: 1/31/2024 courses to load from config file
         URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
         this.subject = "COMP";
         this.courseRepository = courseRepository;
     }
 
-    public void loadCourses() {
+    public void scrape() {
         System.out.println("Starting");
         Map<String, List<Course>> coursesMap = new HashMap<>();
 

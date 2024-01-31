@@ -2,8 +2,8 @@ package org.john;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.john.course.CourseLoader;
-import org.john.course.CourseRefreshScheduler;
+import org.john.course.CourseScraper;
+import org.john.course.CourseRefreshCronJob;
 import org.quartz.JobBuilder;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -17,12 +17,12 @@ public class Main {
         );
 
         Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-        CourseRefreshScheduler courseRefreshScheduler = injector.getInstance(CourseRefreshScheduler.class);
+        CourseRefreshCronJob courseRefreshScheduler = injector.getInstance(CourseRefreshCronJob.class);
 
-        scheduler.getContext().put("courseLoader", injector.getInstance(CourseLoader.class));
+        scheduler.getContext().put("courseScraper", injector.getInstance(CourseScraper.class));
 
         scheduler.scheduleJob(
-                JobBuilder.newJob(CourseRefreshScheduler.class)
+                JobBuilder.newJob(CourseRefreshCronJob.class)
                         .build(),
                 courseRefreshScheduler.getTrigger());
 

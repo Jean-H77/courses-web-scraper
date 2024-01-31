@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="refactor method name">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/MainModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" afterDir="false" />
-    </list>
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +136,7 @@
       <workItem from="1706690409999" duration="2368000" />
       <workItem from="1706733230923" duration="809000" />
       <workItem from="1706734270403" duration="56000" />
-      <workItem from="1706735492725" duration="3883000" />
+      <workItem from="1706735492725" duration="4225000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -202,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706692691550</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses">
+      <option name="closed" value="true" />
+      <created>1706739810889</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706739810889</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +216,7 @@
     <MESSAGE value="Remove Thread.Sleep, Replace with WebDriverWait" />
     <MESSAGE value="Refactor and create methods in CourseRepository" />
     <MESSAGE value="refactor method name" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor method name" />
+    <MESSAGE value="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
   </component>
 </project>

@@ -4,7 +4,7 @@ import org.quartz.*;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
-public class CourseRefreshScheduler implements Job {
+public class CourseRefreshCronJob implements Job {
 
     public final Trigger trigger = TriggerBuilder.newTrigger()
             .withIdentity("CourseRefreshTrigger")
@@ -18,12 +18,12 @@ public class CourseRefreshScheduler implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) {
         try {
-            CourseLoader courseLoader = (CourseLoader) jobExecutionContext
+            CourseScraper courseLoader = (CourseScraper) jobExecutionContext
                     .getScheduler()
                     .getContext()
-                    .get("courseLoader");
+                    .get("courseScraper");
 
-            courseLoader.loadCourses();
+            courseLoader.scrape();
         } catch (SchedulerException e) {
             throw new RuntimeException(e);
         }
