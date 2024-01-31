@@ -21,14 +21,15 @@ import java.util.Map;
 
 public class CourseScraper {
 
-    private final WebDriver driver = new FirefoxDriver();
+    private final WebDriver driver;
     private final String URL;
     private final String subject;
     private final CourseRepository courseRepository;
 
     @Inject
-    public CourseScraper(CourseRepository courseRepository) {
-        // TODO: 1/31/2024 courses to load from config file
+    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository) {
+        this.driver = webDriver;
+        // TODO: 1/31/2024 load URL to load from config file as well as subject(s)
         URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
         this.subject = "COMP";
         this.courseRepository = courseRepository;

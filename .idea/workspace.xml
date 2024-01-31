@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="add title to courses">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +140,7 @@
       <workItem from="1706690409999" duration="2368000" />
       <workItem from="1706733230923" duration="809000" />
       <workItem from="1706734270403" duration="56000" />
-      <workItem from="1706735492725" duration="4225000" />
+      <workItem from="1706735492725" duration="4634000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -202,7 +206,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706739810889</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactor class names">
+      <option name="closed" value="true" />
+      <created>1706740233413</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706740233413</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add title to courses">
+      <option name="closed" value="true" />
+      <created>1706740427203</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1706740427203</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +237,8 @@
     <MESSAGE value="Refactor and create methods in CourseRepository" />
     <MESSAGE value="refactor method name" />
     <MESSAGE value="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
-    <option name="LAST_COMMIT_MESSAGE" value="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
+    <MESSAGE value="Refactor class names" />
+    <MESSAGE value="add title to courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="add title to courses" />
   </component>
 </project>
