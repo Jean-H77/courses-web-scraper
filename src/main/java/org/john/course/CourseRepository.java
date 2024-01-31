@@ -13,7 +13,7 @@ public class CourseRepository {
         this.courses.putAll(courses);
     }
 
-    private List<Course> getByCourseTitle(String title) {
+    private List<Course> getByTitle(String title) {
         return courses.getOrDefault(title, new ArrayList<>());
     }
 
