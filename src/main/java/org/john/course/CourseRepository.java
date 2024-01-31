@@ -1,26 +1,26 @@
 package org.john.course;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CourseRepository {
 
-    private final Map<String, List<Course>> courses = new HashMap<>();
+    private final Map<String, List<Course>> courses = new ConcurrentHashMap<>();
 
     public void putAll(Map<String, List<Course>> courses) {
         this.courses.putAll(courses);
     }
 
-    private List<Course> getByTitle(String title) {
+    public List<Course> getByTitle(String title) {
         return courses.getOrDefault(title, new ArrayList<>());
     }
 
-    private List<Course> getAllByInstructorName(String name) {
+    public List<Course> getAllByInstructorName(String name) {
         return courses.values()
                 .stream()
                 .flatMap(List::stream)
+                .filter(Objects::nonNull)
+                .filter(course -> course.instructor() != null)
                 .filter(course -> course.instructor().equalsIgnoreCase(name))
                 .toList();
     }

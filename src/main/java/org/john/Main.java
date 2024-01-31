@@ -1,22 +1,31 @@
 package org.john;
 
-import org.john.course.Course;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.john.course.CourseLoader;
-import org.john.course.CourseRepository;
-
-import java.util.List;
-import java.util.Map;
+import org.john.course.CourseRefreshScheduler;
+import org.quartz.JobBuilder;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.impl.StdSchedulerFactory;
 
 public class Main {
 
-    public static void main(String[] args) {
-        String url = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
-        String subject = "COMP";
+    public static void main(String[] args) throws SchedulerException {
+        Injector injector = Guice.createInjector(
+                new MainModule()
+        );
 
-        CourseLoader loader = new CourseLoader(url, subject);
-        Map<String, List<Course>> courses = loader.loadAndGetCoursesMap();
+        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+        CourseRefreshScheduler courseRefreshScheduler = injector.getInstance(CourseRefreshScheduler.class);
 
-        CourseRepository courseRepository = new CourseRepository();
-        courseRepository.putAll(courses);
+        scheduler.getContext().put("courseLoader", injector.getInstance(CourseLoader.class));
+
+        scheduler.scheduleJob(
+                JobBuilder.newJob(CourseRefreshScheduler.class)
+                        .build(),
+                courseRefreshScheduler.getTrigger());
+
+        scheduler.start();
     }
 }

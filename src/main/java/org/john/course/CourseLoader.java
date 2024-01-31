@@ -1,5 +1,6 @@
 package org.john.course;
 
+import jakarta.inject.Inject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,16 +24,22 @@ public class CourseLoader {
     private final WebDriver driver = new FirefoxDriver();
     private final String URL;
     private final String subject;
+    private final CourseRepository courseRepository;
 
-    public CourseLoader(String url, String subject) {
-        URL = url;
-        this.subject = subject;
+    @Inject
+    public CourseLoader(CourseRepository courseRepository) {
+        // TODO: 1/31/2024 courses to load from config file
+        URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
+        this.subject = "COMP";
+        this.courseRepository = courseRepository;
     }
 
-    public Map<String, List<Course>> loadAndGetCoursesMap() {
+    public void loadCourses() {
+        System.out.println("Starting");
         Map<String, List<Course>> coursesMap = new HashMap<>();
 
         System.setProperty("webdriver.gecko.driver","C:/geckodriver.exe");
+
         driver.get(URL);
 
         WebElement iframe = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.id("ptifrmtgtframe")));
@@ -55,14 +62,15 @@ public class CourseLoader {
             List<Course> courseList = loadCourse(document, courseTitle, position);
 
             if(courseList != null) {
-                coursesMap.put(courseTitle, courseList);
+                coursesMap.put(courseTitle.replaceAll("\\s", ""), courseList);
+                System.out.println("title: " + courseTitle);
             }
         }
 
-        return coursesMap;
+        courseRepository.putAll(coursesMap);
     }
 
-    public List<Course> loadCourse(Document document, String course, String position) {
+    private List<Course> loadCourse(Document document, String course, String position) {
         String rowIdPrefix = "NR_SSS_SOC_NSEC$scroll$";
         Element outerTable = document.getElementById(rowIdPrefix + position);
 
@@ -101,7 +109,6 @@ public class CourseLoader {
             courseList.add(courseBuilder.build());
         }
 
-        System.out.println("Adding course: " + course);
         return courseList;
     }
 }
