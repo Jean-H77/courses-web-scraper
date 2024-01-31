@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="add: loadAllCourses method">
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="add readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +28,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -120,6 +119,8 @@
       <workItem from="1706494075452" duration="23061000" />
       <workItem from="1706517244314" duration="1034000" />
       <workItem from="1706563997643" duration="5593000" />
+      <workItem from="1706569997755" duration="1073000" />
+      <workItem from="1706581985507" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -137,7 +138,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706518179029</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="finish">
+      <option name="closed" value="true" />
+      <created>1706570034421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706570034421</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add readme">
+      <option name="closed" value="true" />
+      <created>1706570472198</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706570472198</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +163,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="add: loadAllCourses method" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: loadAllCourses method" />
+    <MESSAGE value="finish" />
+    <MESSAGE value="add readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add readme" />
   </component>
 </project>
