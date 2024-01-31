@@ -7,7 +7,7 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 public class CourseRefreshCronJob implements Job {
 
     public final Trigger trigger = TriggerBuilder.newTrigger()
-            .withIdentity("CourseRefreshTrigger")
+            .withIdentity("CourseScrapeTrigger")
             .withSchedule(  simpleSchedule()
                             .withIntervalInMinutes(5)
                             .repeatForever()

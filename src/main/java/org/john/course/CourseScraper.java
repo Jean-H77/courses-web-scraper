@@ -35,10 +35,9 @@ public class CourseScraper {
     }
 
     public void scrape() {
-        System.out.println("Starting");
         Map<String, List<Course>> coursesMap = new HashMap<>();
 
-        System.setProperty("webdriver.gecko.driver","C:/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
 
         driver.get(URL);
 
@@ -56,14 +55,13 @@ public class CourseScraper {
 
         Elements elements = document.select("span:contains(Units)");
 
-        for(Element e : elements) {
+        for (Element e : elements) {
             String position = e.id().substring(e.id().lastIndexOf("$") + 1);
             String courseTitle = e.text().substring(0, e.text().indexOf("-"));
             List<Course> courseList = loadCourse(document, courseTitle, position);
 
-            if(courseList != null) {
+            if (courseList != null) {
                 coursesMap.put(courseTitle.replaceAll("\\s", ""), courseList);
-                System.out.println("title: " + courseTitle);
             }
         }
 
@@ -74,7 +72,7 @@ public class CourseScraper {
         String rowIdPrefix = "NR_SSS_SOC_NSEC$scroll$";
         Element outerTable = document.getElementById(rowIdPrefix + position);
 
-        if(outerTable == null) {
+        if (outerTable == null) {
             return null;
         }
 
@@ -85,11 +83,14 @@ public class CourseScraper {
         Course.Builder courseBuilder;
         List<Course> courseList = new ArrayList<>();
 
-        for(int i = 1; i < rows.size(); i++) {
-            String rowText = rows.get(i).text().replaceAll("OF","").replaceAll("OC","");
+        for (int i = 1; i < rows.size(); i++) {
+            String rowText = rows.get(i).text().replaceAll("OF", "").replaceAll("OC", "");
             String[] parts = rowText.split("\\s+");
             courseBuilder = new Course.Builder();
-            for(int j = 1; j < parts.length; j++) {
+
+            courseBuilder.title(course);
+
+            for (int j = 1; j < parts.length; j++) {
                 String part = parts[j];
                 switch (j) {
                     case 1 -> courseBuilder.section(part);

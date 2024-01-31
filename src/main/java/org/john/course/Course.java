@@ -2,6 +2,7 @@ package org.john.course;
 
 public record Course(
         String index,
+        String title,
         String section,
         String classNumber,
         String availableSeats,
@@ -15,6 +16,7 @@ public record Course(
 ) {
     public static class Builder {
         private String index;
+        private String title;
         private String section;
         private String classNumber;
         private String availableSeats;
@@ -28,6 +30,11 @@ public record Course(
 
         public void index(String index) {
             this.index = index;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
         }
 
         public Builder section(String section) {
@@ -83,6 +90,7 @@ public record Course(
         public Course build() {
             return new Course(
                     index,
+                    title,
                     section,
                     classNumber,
                     availableSeats,
