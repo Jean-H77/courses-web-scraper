@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="add title to courses">
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="inject webdriver into CourseScraper">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/commands/CourseSearchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/MainModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +72,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.john.Main" />
       <module name="CourseWebScraper.main" />
@@ -81,6 +89,20 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.john.Main" />
       <module name="CourseWebScraper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.john.course.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.john.Main" />
+      <module name="CourseWebScraper.main" />
+      <option name="PROGRAM_PARAMETERS" value="MTIwMjM4NTU4OTUwNTEwNTk5MA.GWX2Gc.YLiRuBvxB_SApSvAUGdIwVKCZ-n6WjxH7Bji8A" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.john.course.*" />
@@ -119,7 +141,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -140,7 +162,7 @@
       <workItem from="1706690409999" duration="2368000" />
       <workItem from="1706733230923" duration="809000" />
       <workItem from="1706734270403" duration="56000" />
-      <workItem from="1706735492725" duration="4634000" />
+      <workItem from="1706735492725" duration="14313000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -222,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706740427203</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="inject webdriver into CourseScraper">
+      <option name="closed" value="true" />
+      <created>1706740613352</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706740613352</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +269,7 @@
     <MESSAGE value="Convert project to using Guice and create a cron job that runs every 5 minutes refreshing courses" />
     <MESSAGE value="Refactor class names" />
     <MESSAGE value="add title to courses" />
-    <option name="LAST_COMMIT_MESSAGE" value="add title to courses" />
+    <MESSAGE value="inject webdriver into CourseScraper" />
+    <option name="LAST_COMMIT_MESSAGE" value="inject webdriver into CourseScraper" />
   </component>
 </project>

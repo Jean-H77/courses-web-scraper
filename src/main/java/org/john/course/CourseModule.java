@@ -1,14 +1,15 @@
-package org.john;
+package org.john.course;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import org.john.course.CourseScraper;
 import org.john.course.CourseRefreshCronJob;
 import org.john.course.CourseRepository;
+import org.john.discord.DiscordBot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class MainModule extends AbstractModule {
+public class CourseModule extends AbstractModule {
 
     @Override
     protected void configure() {

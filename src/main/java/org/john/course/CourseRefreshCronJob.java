@@ -9,7 +9,7 @@ public class CourseRefreshCronJob implements Job {
     public final Trigger trigger = TriggerBuilder.newTrigger()
             .withIdentity("CourseScrapeTrigger")
             .withSchedule(  simpleSchedule()
-                            .withIntervalInMinutes(5)
+                            .withIntervalInMinutes(3)
                             .repeatForever()
             )
             .startNow()

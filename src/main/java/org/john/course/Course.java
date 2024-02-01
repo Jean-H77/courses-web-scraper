@@ -11,8 +11,7 @@ public record Course(
         String location,
         String days,
         String time,
-        String instructor,
-        String consent
+        String instructor
 ) {
     public static class Builder {
         private String index;
@@ -26,7 +25,6 @@ public record Course(
         private String days;
         private String time;
         private String instructor;
-        private String consent;
 
         public void index(String index) {
             this.index = index;
@@ -82,11 +80,6 @@ public record Course(
             return this;
         }
 
-        public Builder consent(String consent) {
-            this.consent = consent;
-            return this;
-        }
-
         public Course build() {
             return new Course(
                     index,
@@ -99,8 +92,7 @@ public record Course(
                     location,
                     days,
                     time,
-                    instructor,
-                    consent
+                    instructor
             );
         }
     }

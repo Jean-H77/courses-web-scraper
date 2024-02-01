@@ -15,6 +15,7 @@ dependencies {
     implementation("org.quartz-scheduler:quartz:2.3.2")
     implementation("com.google.inject:guice:7.0.0")
     implementation("org.slf4j:slf4j-api:2.0.11")
+    implementation("net.dv8tion:JDA:5.0.0-beta.20")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

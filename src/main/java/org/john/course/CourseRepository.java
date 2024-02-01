@@ -24,4 +24,8 @@ public class CourseRepository {
                 .filter(course -> course.instructor().equalsIgnoreCase(name))
                 .toList();
     }
+
+    public List<String> getAllCourseNames() {
+        return courses.keySet().stream().toList();
+    }
 }

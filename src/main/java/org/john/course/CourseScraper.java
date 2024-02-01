@@ -1,6 +1,8 @@
 package org.john.course;
 
 import jakarta.inject.Inject;
+import net.dv8tion.jda.api.interactions.commands.Command;
+import org.john.discord.DiscordBot;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,7 +10,6 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,10 +26,12 @@ public class CourseScraper {
     private final String URL;
     private final String subject;
     private final CourseRepository courseRepository;
+    private final List<Command.Choice> choices;
 
     @Inject
-    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository) {
+    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository, DiscordBot discordBot) {
         this.driver = webDriver;
+        this.choices = discordBot.getChoiceList();
         // TODO: 1/31/2024 load URL to load from config file as well as subject(s)
         URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
         this.subject = "COMP";
@@ -36,6 +39,7 @@ public class CourseScraper {
     }
 
     public void scrape() {
+        System.out.println("Starting scrape");
         Map<String, List<Course>> coursesMap = new HashMap<>();
 
         System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
@@ -60,13 +64,19 @@ public class CourseScraper {
             String position = e.id().substring(e.id().lastIndexOf("$") + 1);
             String courseTitle = e.text().substring(0, e.text().indexOf("-"));
             List<Course> courseList = loadCourse(document, courseTitle, position);
-
+            System.out.println("Loading: " + courseTitle);
             if (courseList != null) {
                 coursesMap.put(courseTitle.replaceAll("\\s", ""), courseList);
             }
         }
 
         courseRepository.putAll(coursesMap);
+
+        choices.clear();
+        choices.addAll(courseRepository.getAllCourseNames()
+                .stream()
+                .map(choice -> new Command.Choice(choice, choice))
+                .toList());
     }
 
     private List<Course> loadCourse(Document document, String course, String position) {
@@ -103,7 +113,6 @@ public class CourseScraper {
                     case 7 -> courseBuilder.days(part);
                     case 8 -> courseBuilder.time(part);
                     case 9 -> courseBuilder.instructor(part);
-                    case 10 -> courseBuilder.consent(part);
                 }
             }
 
