@@ -1,5 +1,6 @@
 package org.john.discord.commands;
 
+import jakarta.inject.Inject;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.john.course.Course;
@@ -12,6 +13,7 @@ public class CourseSearchCommand extends ListenerAdapter {
 
     private final CourseRepository repository;
 
+    @Inject
     public CourseSearchCommand(CourseRepository repository) {
         this.repository = repository;
     }
@@ -24,7 +26,8 @@ public class CourseSearchCommand extends ListenerAdapter {
             String option = Objects
                     .requireNonNull(event.getOption("course_title"))
                     .getAsString()
-                    .replaceAll("\\s", "");
+                    .replaceAll("\\s", "")
+                    .toUpperCase();
 
             List<Course> courses = repository.getByTitle(option);
 
@@ -41,10 +44,10 @@ public class CourseSearchCommand extends ListenerAdapter {
         StringBuilder table = new StringBuilder();
         table.append("```");
 
-        table.append(String.format("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s|\n",
+        table.append(String.format("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n",
                 "Title", "Section", "Class Number", "Available Seats", "Status", "Component", "Location", "Days", "Time", "Instructor"));
 
-        table.append("|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|------------------|\n");
+        table.append("|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|\n");
 
         for (Course course : courses) {
             table.append(String.format("| %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n",

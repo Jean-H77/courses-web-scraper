@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="inject webdriver into CourseScraper">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordBot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/commands/CourseSearchCommand.java" afterDir="false" />
+    <list default="true" id="0eeb5476-de2e-4b29-ae14-7c94035fae73" name="Changes" comment="Add quartz to readme tech stack">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/MainModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRefreshCronJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/course/CourseScraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/DiscordModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/john/discord/commands/CourseSearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/john/discord/commands/CourseSearchCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +68,10 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.john.Main" />
       <module name="CourseWebScraper.main" />
+      <option name="PROGRAM_PARAMETERS" value="MTIwMjM4NTU4OTUwNTEwNTk5MA.GXK01f.SKdxl3Rxd3DIaqKll4YcJVpHq8kQA_uFc8RrJk" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.john.*" />
@@ -88,21 +84,8 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.john.Main" />
-      <module name="CourseWebScraper" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.john.course.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.john.Main" />
       <module name="CourseWebScraper.main" />
-      <option name="PROGRAM_PARAMETERS" value="MTIwMjM4NTU4OTUwNTEwNTk5MA.GWX2Gc.YLiRuBvxB_SApSvAUGdIwVKCZ-n6WjxH7Bji8A" />
+      <option name="PROGRAM_PARAMETERS" value="MTIwMjM4NTU4OTUwNTEwNTk5MA.GclKYJ._cRCKXeayerwgsDJ8FnCQaF3c1F7WCTqFLQrqQ" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.john.course.*" />
@@ -162,7 +145,11 @@
       <workItem from="1706690409999" duration="2368000" />
       <workItem from="1706733230923" duration="809000" />
       <workItem from="1706734270403" duration="56000" />
-      <workItem from="1706735492725" duration="14313000" />
+      <workItem from="1706735492725" duration="15598000" />
+      <workItem from="1706759136560" duration="1176000" />
+      <workItem from="1706769144049" duration="619000" />
+      <workItem from="1706812206370" duration="853000" />
+      <workItem from="1706822575481" duration="661000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -252,7 +239,39 @@
       <option name="project" value="LOCAL" />
       <updated>1706740613352</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add commands for searching for courses by title">
+      <option name="closed" value="true" />
+      <created>1706750412312</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706750412312</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update README.md">
+      <option name="closed" value="true" />
+      <created>1706750529885</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1706750529885</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add quartz to readme tech stack">
+      <option name="closed" value="true" />
+      <created>1706751530084</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1706751530084</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add quartz to readme tech stack">
+      <option name="closed" value="true" />
+      <created>1706751565653</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1706751565653</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +289,9 @@
     <MESSAGE value="Refactor class names" />
     <MESSAGE value="add title to courses" />
     <MESSAGE value="inject webdriver into CourseScraper" />
-    <option name="LAST_COMMIT_MESSAGE" value="inject webdriver into CourseScraper" />
+    <MESSAGE value="Add commands for searching for courses by title" />
+    <MESSAGE value="update README.md" />
+    <MESSAGE value="Add quartz to readme tech stack" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add quartz to readme tech stack" />
   </component>
 </project>

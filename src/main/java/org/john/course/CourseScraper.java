@@ -1,8 +1,6 @@
 package org.john.course;
 
 import jakarta.inject.Inject;
-import net.dv8tion.jda.api.interactions.commands.Command;
-import org.john.discord.DiscordBot;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,29 +17,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class CourseScraper {
 
+    private static final String URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
+    private static final String SUBJECT = "COMP";
+    private static final Logger LOGGER = Logger.getLogger(CourseScraper.class.getName());
+
     private final WebDriver driver;
-    private final String URL;
-    private final String subject;
     private final CourseRepository courseRepository;
-    private final List<Command.Choice> choices;
 
     @Inject
-    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository, DiscordBot discordBot) {
+    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository) {
         this.driver = webDriver;
-        this.choices = discordBot.getChoiceList();
-        // TODO: 1/31/2024 load URL to load from config file as well as subject(s)
-        URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
-        this.subject = "COMP";
         this.courseRepository = courseRepository;
     }
 
     public void scrape() {
-        System.out.println("Starting scrape");
         Map<String, List<Course>> coursesMap = new HashMap<>();
-
         System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
 
         driver.get(URL);
@@ -51,7 +45,7 @@ public class CourseScraper {
 
         WebElement subjectElement = driver.findElement(By.id("NR_SSS_SOC_NWRK_SUBJECT"));
         Select subjectDropdown = new Select(subjectElement);
-        subjectDropdown.selectByValue(subject);
+        subjectDropdown.selectByValue(SUBJECT);
 
         driver.findElement(By.id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB")).click();
         new WebDriverWait(driver, Duration.ofSeconds(45)).until(ExpectedConditions.visibilityOfElementLocated(By.id("NR_SSS_SOC_NSEC$scroll$0")));
@@ -60,23 +54,21 @@ public class CourseScraper {
 
         Elements elements = document.select("span:contains(Units)");
 
+        LOGGER.info("Loading courses");
+        int numberCoursesLoaded = 0;
+
         for (Element e : elements) {
             String position = e.id().substring(e.id().lastIndexOf("$") + 1);
             String courseTitle = e.text().substring(0, e.text().indexOf("-"));
             List<Course> courseList = loadCourse(document, courseTitle, position);
-            System.out.println("Loading: " + courseTitle);
             if (courseList != null) {
                 coursesMap.put(courseTitle.replaceAll("\\s", ""), courseList);
+                numberCoursesLoaded += courseList.size();
             }
         }
 
+        LOGGER.info("Finished loading: " + numberCoursesLoaded + " courses");
         courseRepository.putAll(coursesMap);
-
-        choices.clear();
-        choices.addAll(courseRepository.getAllCourseNames()
-                .stream()
-                .map(choice -> new Command.Choice(choice, choice))
-                .toList());
     }
 
     private List<Course> loadCourse(Document document, String course, String position) {

@@ -20,8 +20,7 @@ public class CourseRepository {
                 .stream()
                 .flatMap(List::stream)
                 .filter(Objects::nonNull)
-                .filter(course -> course.instructor() != null)
-                .filter(course -> course.instructor().equalsIgnoreCase(name))
+                .filter(course -> course.instructor() != null && course.instructor().equalsIgnoreCase(name))
                 .toList();
     }
 
