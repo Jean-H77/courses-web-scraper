@@ -6,6 +6,6 @@ public class ConfigurationModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(ConfigurationModule.class);
+        bind(ConfigurationModule.class).asEagerSingleton();
     }
 }
