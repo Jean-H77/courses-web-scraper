@@ -2,6 +2,7 @@ package org.john;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.john.config.ConfigurationModule;
 import org.john.course.CourseModule;
 import org.john.course.CourseRefreshCronJob;
 import org.john.course.CourseScraper;
@@ -16,6 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws SchedulerException, InterruptedException {
         Injector injector = Guice.createInjector(
+                new ConfigurationModule(),
                 new CourseModule(),
                 new DiscordModule()
         );

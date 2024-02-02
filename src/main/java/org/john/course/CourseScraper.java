@@ -1,6 +1,7 @@
 package org.john.course;
 
 import jakarta.inject.Inject;
+import org.john.config.Configuration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -21,31 +22,33 @@ import java.util.logging.Logger;
 
 public class CourseScraper {
 
-    private static final String URL = "https://cmsweb.csun.edu/psp/CNRPRD/EMPLOYEE/SA/c/NR_SSS_COMMON_MENU.NR_SSS_SOC_BASIC_C.GBL";
-    private static final String SUBJECT = "COMP";
     private static final Logger LOGGER = Logger.getLogger(CourseScraper.class.getName());
 
     private final WebDriver driver;
     private final CourseRepository courseRepository;
+    private final String url;
+    private final String subject;
 
     @Inject
-    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository) {
+    public CourseScraper(WebDriver webDriver, CourseRepository courseRepository, Configuration configuration) {
         this.driver = webDriver;
         this.courseRepository = courseRepository;
+        this.url = configuration.getUrl();
+        this.subject = configuration.getSubject();
     }
 
     public void scrape() {
         Map<String, List<Course>> coursesMap = new HashMap<>();
         System.setProperty("webdriver.gecko.driver", "C:/geckodriver.exe");
 
-        driver.get(URL);
+        driver.get(url);
 
         WebElement iframe = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.id("ptifrmtgtframe")));
         driver.switchTo().frame(iframe);
 
         WebElement subjectElement = driver.findElement(By.id("NR_SSS_SOC_NWRK_SUBJECT"));
         Select subjectDropdown = new Select(subjectElement);
-        subjectDropdown.selectByValue(SUBJECT);
+        subjectDropdown.selectByValue(subject);
 
         driver.findElement(By.id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB")).click();
         new WebDriverWait(driver, Duration.ofSeconds(45)).until(ExpectedConditions.visibilityOfElementLocated(By.id("NR_SSS_SOC_NSEC$scroll$0")));
