@@ -3,6 +3,7 @@ package org.john.discord.commands;
 import jakarta.inject.Inject;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.john.course.Course;
 import org.john.course.CourseRepository;
 
@@ -23,13 +24,15 @@ public class CourseSearchCommand extends ListenerAdapter {
 
         if(event.getName().equalsIgnoreCase("course")) {
 
-            String option = Objects
-                    .requireNonNull(event.getOption("course_title"))
-                    .getAsString()
-                    .replaceAll("\\s", "")
-                    .toUpperCase();
+            OptionMapping option = event.getOption("course_title");
 
-            List<Course> courses = repository.getByTitle(option);
+            if(option == null) {
+                event.reply("Invalid request").setEphemeral(true).queue();
+                return;
+            }
+
+            String optionString = option.getAsString().replaceAll("\\s", "").toUpperCase();
+            List<Course> courses = repository.getByTitle(optionString);
 
             if(courses.isEmpty()) {
                 event.reply("No courses exist for " + option).setEphemeral(true).queue();
