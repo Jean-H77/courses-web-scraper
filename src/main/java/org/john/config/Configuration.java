@@ -11,6 +11,11 @@ public class Configuration {
 
     private String url;
     private String subject;
+    private String subjectDropdownWebElementId;
+    private String searchButtonWebElementId;
+    private String iFrameWebElementId;
+    private String tableRowWebElementIdPrefix;
+    private String tableWebElementClassName;
 
     public Configuration() {
         loadProperties();
@@ -24,6 +29,11 @@ public class Configuration {
 
             url = properties.getProperty("url");
             subject = properties.getProperty("subject");
+            subjectDropdownWebElementId = properties.getProperty("subjectDropdownWebElementId");
+            searchButtonWebElementId = properties.getProperty("searchButtonWebElementId");
+            iFrameWebElementId = properties.getProperty("iFrameWebElementId");
+            tableRowWebElementIdPrefix = properties.getProperty("tableRowWebElementIdPrefix");
+            tableWebElementClassName = properties.getProperty("tableWebElementClassName");
 
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Unable to load properties file", e);
@@ -36,5 +46,25 @@ public class Configuration {
 
     public String getSubject() {
         return subject;
+    }
+
+    public String getSubjectDropdownWebElementId() {
+        return subjectDropdownWebElementId;
+    }
+
+    public String getSearchButtonWebElementId() {
+        return searchButtonWebElementId;
+    }
+
+    public String getiFrameWebElementId() {
+        return iFrameWebElementId;
+    }
+
+    public String getTableRowWebElementIdPrefix() {
+        return tableRowWebElementIdPrefix;
+    }
+
+    public String getTableWebElementClassName() {
+        return tableWebElementClassName;
     }
 }

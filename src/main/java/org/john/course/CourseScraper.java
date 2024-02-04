@@ -1,6 +1,8 @@
 package org.john.course;
 
+import com.google.inject.name.Named;
 import jakarta.inject.Inject;
+import org.checkerframework.checker.units.qual.N;
 import org.john.config.Configuration;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,6 +30,11 @@ public class CourseScraper {
     private final CourseRepository courseRepository;
     private final String url;
     private final String subject;
+    private final String subjectDropdownWebElementId;
+    private final String searchButtonWebElementId;
+    private final String iFrameWebElementId;
+    private final String tableRowWebElementIdPrefix;
+    private final String tableWebElementClassName;
 
     @Inject
     public CourseScraper(WebDriver webDriver, CourseRepository courseRepository, Configuration configuration) {
@@ -35,6 +42,11 @@ public class CourseScraper {
         this.courseRepository = courseRepository;
         this.url = configuration.getUrl();
         this.subject = configuration.getSubject();
+        this.subjectDropdownWebElementId = configuration.getSubjectDropdownWebElementId();
+        this.searchButtonWebElementId = configuration.getSearchButtonWebElementId();
+        this.iFrameWebElementId = configuration.getiFrameWebElementId();
+        this.tableRowWebElementIdPrefix = configuration.getTableRowWebElementIdPrefix();
+        this.tableWebElementClassName = configuration.getTableWebElementClassName();
     }
 
     public void scrape() {
@@ -43,15 +55,15 @@ public class CourseScraper {
 
         driver.get(url);
 
-        WebElement iframe = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.id("ptifrmtgtframe")));
+        WebElement iframe = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.id(iFrameWebElementId)));
         driver.switchTo().frame(iframe);
 
-        WebElement subjectElement = driver.findElement(By.id("NR_SSS_SOC_NWRK_SUBJECT"));
+        WebElement subjectElement = driver.findElement(By.id(subjectDropdownWebElementId));
         Select subjectDropdown = new Select(subjectElement);
         subjectDropdown.selectByValue(subject);
 
-        driver.findElement(By.id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB")).click();
-        new WebDriverWait(driver, Duration.ofSeconds(45)).until(ExpectedConditions.visibilityOfElementLocated(By.id("NR_SSS_SOC_NSEC$scroll$0")));
+        driver.findElement(By.id(searchButtonWebElementId)).click();
+        new WebDriverWait(driver, Duration.ofSeconds(45)).until(ExpectedConditions.visibilityOfElementLocated(By.id(tableRowWebElementIdPrefix+"0")));
 
         Document document = Jsoup.parse(driver.getPageSource());
 
@@ -75,15 +87,13 @@ public class CourseScraper {
     }
 
     private List<Course> loadCourse(Document document, String course, String position) {
-        String rowIdPrefix = "NR_SSS_SOC_NSEC$scroll$";
-        Element outerTable = document.getElementById(rowIdPrefix + position);
+        Element outerTable = document.getElementById(tableRowWebElementIdPrefix + position);
 
         if (outerTable == null) {
             return null;
         }
 
-        String tableName = "PSLEVEL3GRIDWBO";
-        Element innerTable = outerTable.getElementsByClass(tableName).getFirst();
+        Element innerTable = outerTable.getElementsByClass(tableWebElementClassName).getFirst();
         Elements rows = innerTable.select("tr");
 
         Course.Builder courseBuilder;

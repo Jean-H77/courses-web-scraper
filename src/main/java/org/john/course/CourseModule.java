@@ -2,6 +2,8 @@ package org.john.course;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.google.inject.name.Named;
+import com.google.inject.name.Names;
 import org.john.course.CourseScraper;
 import org.john.course.CourseRefreshCronJob;
 import org.john.course.CourseRepository;
@@ -14,7 +16,7 @@ public class CourseModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(CourseRepository.class).in(Scopes.SINGLETON);
-        bind(WebDriver.class).to(FirefoxDriver.class);
+        bind(WebDriver.class).to(FirefoxDriver.class).asEagerSingleton();
         bind(CourseRefreshCronJob.class);
         bind(CourseScraper.class).in(Scopes.SINGLETON);
     }
