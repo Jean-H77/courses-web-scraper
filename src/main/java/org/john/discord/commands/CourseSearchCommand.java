@@ -8,7 +8,6 @@ import org.john.course.Course;
 import org.john.course.CourseRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CourseSearchCommand extends ListenerAdapter {
 
